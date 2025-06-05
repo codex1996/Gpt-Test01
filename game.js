@@ -86,6 +86,8 @@ function gameLoop() {
         return;
     }
 
+    handleInput();
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     drawPlayer();
@@ -139,10 +141,4 @@ setInterval(() => {
     }
 }, 1000);
 
-function loop() {
-    handleInput();
-    gameLoop();
-    requestAnimationFrame(loop);
-}
-
-loop();
+gameLoop();

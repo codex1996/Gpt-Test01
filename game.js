@@ -127,6 +127,7 @@ window.addEventListener('keydown', (e) => {
         if (!weaponUnlocked && cheatBuffer === cheatCode) {
             weaponUnlocked = true;
             document.getElementById('weaponSwitch').style.display = 'block';
+            updateButtonLabel();
         }
     }
 
@@ -171,12 +172,21 @@ setInterval(() => {
     }
 }, 1000);
 
-if (weaponUnlocked) {
-    document.getElementById('weaponSwitch').style.display = 'block';
+
+const switchButton = document.getElementById('weaponButton');
+
+function updateButtonLabel() {
+    switchButton.textContent = `Weapon: ${['Normal','Heavy','Triple'][currentBullet]}`;
 }
 
-document.getElementById('weaponSelect')?.addEventListener('change', (e) => {
-    currentBullet = parseInt(e.target.value, 10);
+if (weaponUnlocked) {
+    document.getElementById('weaponSwitch').style.display = 'block';
+    updateButtonLabel();
+}
+
+switchButton?.addEventListener('click', () => {
+    currentBullet = (currentBullet + 1) % bulletTypes.length;
+    updateButtonLabel();
 });
 
 gameLoop();

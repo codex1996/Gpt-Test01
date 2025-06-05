@@ -14,14 +14,23 @@ let enemies = [];
 let score = 0;
 let gameOver = false;
 
+// bullet types unlocked with cheat code
+const bulletTypes = [
+    { width: 4, height: 10, speed: 7, color: "yellow", count: 1, spread: 0 },
+    { width: 6, height: 14, speed: 6, color: "orange", count: 1, spread: 0 },
+    { width: 4, height: 8,  speed: 8, color: "lightgreen", count: 3, spread: 10 }
+];
+let currentBullet = 0;
+let weaponUnlocked = false;
+
 function drawPlayer() {
     ctx.fillStyle = 'skyblue';
     ctx.fillRect(player.x, player.y, player.width, player.height);
 }
 
 function drawBullets() {
-    ctx.fillStyle = 'yellow';
     bullets.forEach(b => {
+        ctx.fillStyle = b.color;
         ctx.fillRect(b.x, b.y, b.width, b.height);
     });
 }
@@ -103,16 +112,35 @@ function gameLoop() {
 }
 
 let keys = {};
+const cheatCode = 'BULLET';
+let cheatBuffer = '';
+
 window.addEventListener('keydown', (e) => {
     keys[e.code] = true;
+
+    // build cheat buffer
+    cheatBuffer += e.key.toUpperCase();
+    if (cheatBuffer.length > cheatCode.length) {
+        cheatBuffer = cheatBuffer.slice(-cheatCode.length);
+    }
+    if (!weaponUnlocked && cheatBuffer === cheatCode) {
+        weaponUnlocked = true;
+        document.getElementById('weaponSwitch').style.display = 'block';
+    }
+
     if (e.code === 'Space') {
-        bullets.push({
-            x: player.x + player.width / 2 - 2,
-            y: player.y,
-            width: 4,
-            height: 10,
-            speed: 7
-        });
+        const type = bulletTypes[currentBullet];
+        for (let i = 0; i < type.count; i++) {
+            const offset = (i - (type.count - 1) / 2) * type.spread;
+            bullets.push({
+                x: player.x + player.width / 2 - type.width / 2 + offset,
+                y: player.y,
+                width: type.width,
+                height: type.height,
+                speed: type.speed,
+                color: type.color
+            });
+        }
     }
 });
 
@@ -140,5 +168,13 @@ setInterval(() => {
         spawnEnemy();
     }
 }, 1000);
+
+if (weaponUnlocked) {
+    document.getElementById('weaponSwitch').style.display = 'block';
+}
+
+document.getElementById('weaponSelect')?.addEventListener('change', (e) => {
+    currentBullet = parseInt(e.target.value, 10);
+});
 
 gameLoop();

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plane Battle Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Plane Battle Game</h1>
+    <p id="instructions">
+        Use the arrow keys to move and press the spacebar to shoot. Type
+        <strong>BULLET</strong> during play to unlock weapon switching.
+    </p>
+    <canvas id="gameCanvas" width="800" height="600"></canvas>
+    <p id="score">Score: 0</p>
+    <div id="weaponSwitch" style="display:none">
+        <button id="weaponButton">Weapon: Normal</button>
+    </div>
+    <p id="message"></p>
+    <script src="game.js"></script>
+</body>
+</html>

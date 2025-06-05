@@ -1,0 +1,41 @@
+body {
+    text-align: center;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background:
+        radial-gradient(1px 1px at 20px 20px, #fff, transparent),
+        radial-gradient(1px 1px at 50px 80px, #fff, transparent),
+        radial-gradient(1px 1px at 80px 40px, #fff, transparent),
+        radial-gradient(1px 1px at 110px 110px, #fff, transparent),
+        radial-gradient(1px 1px at 160px 60px, #fff, transparent),
+        radial-gradient(1px 1px at 200px 150px, #fff, transparent),
+        linear-gradient(#001, #000);
+    background-size: 200px 200px;
+}
+
+#gameCanvas {
+    background: rgba(0,0,0,0.5);
+    display: block;
+    margin: 0 auto;
+    border: 1px solid #555;
+}
+
+#instructions {
+    margin-bottom: 10px;
+}
+
+#message {
+    font-size: 24px;
+    margin-top: 10px;
+}
+
+#weaponSwitch {
+    margin-top: 10px;
+}
+
+#weaponButton {
+    padding: 5px 10px;
+    font-size: 16px;
+}
+

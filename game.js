@@ -118,14 +118,16 @@ let cheatBuffer = '';
 window.addEventListener('keydown', (e) => {
     keys[e.code] = true;
 
-    // build cheat buffer
-    cheatBuffer += e.key.toUpperCase();
-    if (cheatBuffer.length > cheatCode.length) {
-        cheatBuffer = cheatBuffer.slice(-cheatCode.length);
-    }
-    if (!weaponUnlocked && cheatBuffer === cheatCode) {
-        weaponUnlocked = true;
-        document.getElementById('weaponSwitch').style.display = 'block';
+    // build cheat buffer using only letter keys
+    if (e.key.length === 1 && /[a-z]/i.test(e.key)) {
+        cheatBuffer += e.key.toUpperCase();
+        if (cheatBuffer.length > cheatCode.length) {
+            cheatBuffer = cheatBuffer.slice(-cheatCode.length);
+        }
+        if (!weaponUnlocked && cheatBuffer === cheatCode) {
+            weaponUnlocked = true;
+            document.getElementById('weaponSwitch').style.display = 'block';
+        }
     }
 
     if (e.code === 'Space') {
@@ -178,3 +180,4 @@ document.getElementById('weaponSelect')?.addEventListener('change', (e) => {
 });
 
 gameLoop();
+

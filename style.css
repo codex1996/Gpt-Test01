@@ -12,6 +12,10 @@ body {
     border: 1px solid #555;
 }
 
+#instructions {
+    margin-bottom: 10px;
+}
+
 #message {
     font-size: 24px;
     margin-top: 10px;
@@ -20,3 +24,4 @@ body {
 #weaponSwitch {
     margin-top: 10px;
 }
+

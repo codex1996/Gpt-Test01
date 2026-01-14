@@ -1,0 +1,32 @@
+body {
+    text-align: center;
+    background: #000;
+    color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+#gameCanvas {
+    background: #222;
+    display: block;
+    margin: 0 auto;
+    border: 1px solid #555;
+}
+
+#instructions {
+    margin-bottom: 10px;
+}
+
+#message {
+    font-size: 24px;
+    margin-top: 10px;
+}
+
+#weaponSwitch {
+    margin-top: 10px;
+}
+
+#weaponButton {
+    padding: 5px 10px;
+    font-size: 16px;
+}
+
